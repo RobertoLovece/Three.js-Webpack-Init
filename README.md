@@ -1,2 +1,6 @@
 # Three.js-Webpack-Init
-A webpack setup with three js demo. Intialize by cloning then using npm i 
+__Description__ - A webpack setup for three.js.
+
+__Install__ - npm i
+
+__Run__ - npm run start
