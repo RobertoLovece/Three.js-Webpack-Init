@@ -1,13 +1,18 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
+import Shape from './utilities/shape.js' 
+
 require('normalize.css/normalize.css');
 require("./index.css");
 
-let scene, camera, renderer, cube, controls, container;
+let scene, camera, renderer;
+let controls, container, shapes;
 
 window.onload = function() {
     init();
+    initObjects();
+    initControls();
     animate();
 }
 
@@ -33,28 +38,23 @@ function init() {
     
     container.appendChild(renderer.domElement);
 
-    const geometry = new THREE.BoxGeometry(2, 2, 2);
-    const material = new THREE.MeshBasicMaterial({ color: 0x0000ff });
-
-    cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
-
     camera.position.z = 5;
-
-    controlsInit();
 }
 
-function animate() {
-    requestAnimationFrame(animate);
+function initObjects() {
 
-    controls.update();
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
+    shapes = [];
 
-    renderer.render(scene, camera);
+    shapes.push(
+        new Shape(0,0,2)
+    );
+
+    shapes.forEach(function(shape) {
+        scene.add(shape);
+    });
 }
 
-function controlsInit() {
+function initControls() {
 
     controls = new OrbitControls(camera, renderer.domElement);
 
@@ -62,6 +62,18 @@ function controlsInit() {
     controls.enableZoom = false;
     controls.enableRotate = true;
 
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+
+    shapes.forEach(function(shape) {
+        shape.update();
+    });
+
+    controls.update();
+
+    renderer.render(scene, camera);
 }
 
 function onWindowResize() {
