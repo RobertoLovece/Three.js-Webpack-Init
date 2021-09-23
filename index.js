@@ -1,20 +1,33 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import Stats from 'three/examples/jsm/libs/stats.module.js';
 
-import Shape from './utilities/shape.js'
+//
+
+import Shape from './src/utilities/shape.js';
+
+//
 
 require('normalize.css/normalize.css');
-require("./index.css");
+require("./src/css/index.css");
+
+//
 
 let scene, camera, renderer;
 let controls, container, shapes;
+let stats;
+
+//
 
 window.onload = function () {
     initScene();
+    initStats();
     initObjects();
     initControls();
     animate();
 }
+
+//
 
 function initScene() {
 
@@ -40,8 +53,25 @@ function initScene() {
     container.appendChild(renderer.domElement);
 
     camera.position.z = 5;
+    camera.position.x = 4;
+    camera.position.y = 3;
+    camera.lookAt(0,0,0)
 
 }
+
+//
+
+function initStats() {
+
+    var axesHelper = new THREE.AxesHelper( 5 );
+    scene.add( axesHelper );
+
+    stats = new Stats();
+    document.body.appendChild(stats.dom);
+
+}
+
+//
 
 function initObjects() {
 
@@ -56,6 +86,8 @@ function initObjects() {
     });
 }
 
+//
+
 function initControls() {
 
     controls = new OrbitControls(camera, renderer.domElement);
@@ -66,6 +98,8 @@ function initControls() {
 
 }
 
+//
+
 function animate() {
     requestAnimationFrame(animate);
 
@@ -74,9 +108,12 @@ function animate() {
     });
 
     controls.update();
+    stats.update();
 
     renderer.render(scene, camera);
 }
+
+//
 
 function onWindowResize() {
     container = document.getElementById('canvas');
