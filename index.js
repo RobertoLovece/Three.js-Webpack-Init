@@ -20,11 +20,15 @@ let stats;
 //
 
 window.onload = function () {
+
     initScene();
     initStats();
+
     initObjects();
     initControls();
+
     animate();
+
 }
 
 //
@@ -92,8 +96,8 @@ function initControls() {
 
     controls = new OrbitControls(camera, renderer.domElement);
 
-    controls.enablePan = false;
-    controls.enableZoom = false;
+    controls.enablePan = true;
+    controls.enableZoom = true;
     controls.enableRotate = true;
 
 }
