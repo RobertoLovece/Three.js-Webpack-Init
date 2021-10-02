@@ -114,6 +114,13 @@ function animate() {
 }
 
 //
+// EVENT LISTENERS
+//
+
+window.addEventListener('resize', onWindowResize, false);
+window.addEventListener('click', onClick, false);
+
+//
 
 function onWindowResize() {
     container = document.getElementById('canvas');
@@ -128,4 +135,8 @@ function onWindowResize() {
     renderer.setSize(width, height);
 }
 
-window.addEventListener('resize', onWindowResize, false);
+//
+
+function onClick(e) {
+    console.log(geometry.attributes.normal);
+}   
