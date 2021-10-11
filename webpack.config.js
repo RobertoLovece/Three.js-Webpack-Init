@@ -17,17 +17,17 @@ module.exports = {
 
  	plugins: [
 		new HtmlWebpackPlugin({
-		  template: './index.html',
-		  inject: true,
-		  chunks: ['index'],
-		  filename: 'index.html'
+		  	template: './index.html',
+		  	inject: true,
+		  	chunks: ['index'],
+		  	filename: 'index.html'
 		}),
  	],
 
   	devtool: 'inline-source-map',
   	devServer: {
-		contentBase: './dist',
-		port: 8080
+		static: './dist',
+		port: 8080,
   	},
 
   	module: {

@@ -7,7 +7,10 @@ export default class Shape extends THREE.Mesh {
 
         // created the mesh before you assign a position
         this.geometry = new THREE.BoxGeometry(size, size, size);
-        this.material = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+        this.material = new THREE.MeshNormalMaterial({ 
+            color: 0x0000ff,
+            normalMapType: THREE.ObjectSpaceNormalMap
+        });
 
         // assign the position now mesh is created
         this.position.x = x;
