@@ -24,8 +24,10 @@ module.exports = {
 		}),
  	],
 
+	target: 'web',
   	devtool: 'inline-source-map',
   	devServer: {
+		open: true,
 		static: './dist',
 		port: 8080,
   	},
